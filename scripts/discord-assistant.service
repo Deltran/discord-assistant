@@ -1,0 +1,15 @@
+[Unit]
+Description=Discord AI Assistant
+After=network.target
+
+[Service]
+Type=simple
+User=%i
+WorkingDirectory=/home/%i/code/discord-assistant
+Environment=PATH=/home/%i/code/discord-assistant/.venv/bin:/usr/bin
+ExecStart=/home/%i/code/discord-assistant/.venv/bin/python -m src.main
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
