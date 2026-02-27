@@ -17,6 +17,7 @@ dependencies = [
     "pyyaml>=6,<7",
     "python-dotenv>=1,<2",
     "structlog>=24,<26",
+    "aiohttp>=3.9,<4",
 ]
 
 [project.optional-dependencies]
