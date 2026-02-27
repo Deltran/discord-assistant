@@ -5,7 +5,9 @@ import logging
 from src.bot.client import AssistantBot
 from src.agent.core import CoreAgent
 from src.agent.router import get_session_id
+from src.memory.operational import OperationalMemory
 from src.memory.store import MessageStore
+from src.memory.vector import VectorMemory
 from src.providers.minimax import create_llm
 from src.settings import Settings
 from src.soul import load_soul
@@ -25,7 +27,20 @@ def create_app() -> AssistantBot:
     logger.info(f"Loaded SOUL.md from {settings.soul_path}")
 
     llm = create_llm(settings)
-    agent = CoreAgent(llm=llm, system_prompt=system_prompt)
+
+    vector_memory = VectorMemory(persist_dir=settings.data_dir / "vectors")
+    logger.info("Vector memory initialized at %s", settings.data_dir / "vectors")
+
+    operational_memory = OperationalMemory(memory_dir=settings.memory_dir)
+    operational_memory.initialize()
+    logger.info("Operational memory initialized at %s", settings.memory_dir)
+
+    agent = CoreAgent(
+        llm=llm,
+        system_prompt=system_prompt,
+        vector_memory=vector_memory,
+        operational_memory=operational_memory,
+    )
 
     async def agent_callback(message) -> str:
         return await agent.invoke(
