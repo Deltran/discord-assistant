@@ -3,7 +3,8 @@
 import logging
 
 from src.bot.client import AssistantBot
-from src.agent.core import invoke_agent
+from src.agent.core import CoreAgent
+from src.agent.router import get_session_id
 from src.providers.minimax import create_llm
 from src.settings import Settings
 from src.soul import load_soul
@@ -23,11 +24,11 @@ def create_app() -> AssistantBot:
     logger.info(f"Loaded SOUL.md from {settings.soul_path}")
 
     llm = create_llm(settings)
+    agent = CoreAgent(llm=llm, system_prompt=system_prompt)
 
     async def agent_callback(message) -> str:
-        return await invoke_agent(
-            llm=llm,
-            system_prompt=system_prompt,
+        return await agent.invoke(
+            session_id=get_session_id(message),
             user_message=message.content,
             user_name=message.author.display_name,
         )

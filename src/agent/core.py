@@ -1,27 +1,38 @@
-"""Core agent — Phase 1: simple LLM call with system prompt.
+"""Core agent with session management.
 
-In later phases this becomes a full LangGraph state machine with routing,
-sub-agent delegation, and checkpointing.
+Uses in-memory session store. Later phases add full LangGraph graph
+with sub-agent routing and durable checkpointing.
 """
 
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 
 from src.providers.minimax import normalize_messages
 
 
-async def invoke_agent(
-    *,
-    llm: ChatOpenAI,
-    system_prompt: str,
-    user_message: str,
-    user_name: str,
-) -> str:
-    """Invoke the agent with a single user message and return the response."""
-    messages = normalize_messages([
-        SystemMessage(content=system_prompt),
-        HumanMessage(content=f"[{user_name}]: {user_message}"),
-    ])
+class CoreAgent:
+    def __init__(self, *, llm: ChatOpenAI, system_prompt: str):
+        self.llm = llm
+        self.system_prompt = system_prompt
+        self._sessions: dict[str, list[BaseMessage]] = {}
 
-    response = await llm.ainvoke(messages)
-    return response.content
+    def _get_session(self, session_id: str) -> list[BaseMessage]:
+        if session_id not in self._sessions:
+            self._sessions[session_id] = []
+        return self._sessions[session_id]
+
+    async def invoke(self, *, session_id: str, user_message: str, user_name: str) -> str:
+        session = self._get_session(session_id)
+
+        user_msg = HumanMessage(content=f"[{user_name}]: {user_message}")
+        session.append(user_msg)
+
+        full_messages = [SystemMessage(content=self.system_prompt)] + session
+        normalized = normalize_messages(full_messages)
+
+        response = await self.llm.ainvoke(normalized)
+
+        ai_msg = AIMessage(content=response.content)
+        session.append(ai_msg)
+
+        return response.content

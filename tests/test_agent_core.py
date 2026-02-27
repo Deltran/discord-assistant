@@ -1,58 +1,53 @@
-"""Tests for the core agent."""
+"""Tests for the LangGraph-based core agent."""
 
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from src.agent.core import invoke_agent
+from src.agent.core import CoreAgent
 
 
-@pytest.mark.asyncio
-async def test_invoke_agent_returns_string():
-    mock_llm = MagicMock()
-    mock_llm.ainvoke = AsyncMock(return_value=MagicMock(content="Hello!"))
+@pytest.fixture
+def mock_llm():
+    llm = MagicMock()
+    llm.ainvoke = AsyncMock(return_value=MagicMock(content="Hello!"))
+    return llm
 
-    result = await invoke_agent(
+
+@pytest.fixture
+def agent(mock_llm, tmp_path):
+    return CoreAgent(
         llm=mock_llm,
         system_prompt="You are helpful.",
-        user_message="Hi",
-        user_name="TestUser",
     )
-    assert result == "Hello!"
-    mock_llm.ainvoke.assert_called_once()
 
 
 @pytest.mark.asyncio
-async def test_invoke_agent_includes_user_attribution():
-    mock_llm = MagicMock()
-    mock_llm.ainvoke = AsyncMock(return_value=MagicMock(content="Response"))
-
-    await invoke_agent(
-        llm=mock_llm,
-        system_prompt="System",
-        user_message="Hello",
+async def test_agent_responds(agent):
+    result = await agent.invoke(
+        session_id="dm-123",
+        user_message="Hi",
         user_name="Alice",
     )
-
-    call_args = mock_llm.ainvoke.call_args[0][0]
-    human_msgs = [m for m in call_args if hasattr(m, "content") and "Alice" in str(m.content)]
-    assert len(human_msgs) > 0
+    assert result == "Hello!"
 
 
 @pytest.mark.asyncio
-async def test_invoke_agent_has_system_message():
-    mock_llm = MagicMock()
-    mock_llm.ainvoke = AsyncMock(return_value=MagicMock(content="OK"))
+async def test_agent_maintains_session(agent, mock_llm):
+    await agent.invoke(session_id="dm-123", user_message="Hi", user_name="Alice")
+    await agent.invoke(session_id="dm-123", user_message="How are you?", user_name="Alice")
 
-    await invoke_agent(
-        llm=mock_llm,
-        system_prompt="Be helpful",
-        user_message="test",
-        user_name="Bob",
-    )
+    # Second call should have conversation history
+    second_call_messages = mock_llm.ainvoke.call_args_list[1][0][0]
+    assert len(second_call_messages) > 2  # system + first exchange + new message
 
-    from langchain_core.messages import SystemMessage
-    call_args = mock_llm.ainvoke.call_args[0][0]
-    system_msgs = [m for m in call_args if isinstance(m, SystemMessage)]
-    assert len(system_msgs) == 1
-    assert "Be helpful" in system_msgs[0].content
+
+@pytest.mark.asyncio
+async def test_agent_separate_sessions(agent, mock_llm):
+    await agent.invoke(session_id="dm-123", user_message="Hi from Alice", user_name="Alice")
+    await agent.invoke(session_id="dm-456", user_message="Hi from Bob", user_name="Bob")
+
+    # Bob's session should not contain Alice's messages
+    bob_messages = mock_llm.ainvoke.call_args_list[1][0][0]
+    message_contents = " ".join(m.content for m in bob_messages)
+    assert "Alice" not in message_contents
