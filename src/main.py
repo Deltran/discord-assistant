@@ -5,6 +5,7 @@ import logging
 from src.bot.client import AssistantBot
 from src.agent.core import CoreAgent
 from src.agent.router import get_session_id
+from src.memory.store import MessageStore
 from src.providers.minimax import create_llm
 from src.settings import Settings
 from src.soul import load_soul
@@ -33,7 +34,13 @@ def create_app() -> AssistantBot:
             user_name=message.author.display_name,
         )
 
-    return AssistantBot(settings=settings, agent_callback=agent_callback)
+    message_store = MessageStore(settings.data_dir / "messages.sqlite")
+
+    return AssistantBot(
+        settings=settings,
+        agent_callback=agent_callback,
+        message_store=message_store,
+    )
 
 
 def main():
