@@ -1,0 +1,11 @@
+name: system
+description: "Execute shell commands and manage files on the host system"
+trigger: "When the user asks to run commands, check system status, or manage files"
+permissions:
+  - shell_exec
+  - file_read
+  - file_write
+entry_point: tool.py
+author: builtin
+trusted: true
+created: "2026-02-27"

@@ -1,0 +1,12 @@
+name: builder
+description: "Execute implementation plans step by step with validation"
+trigger: "When the user provides a plan or asks to build/implement something from a spec"
+permissions:
+  - shell_exec
+  - file_read
+  - file_write
+  - http_request
+entry_point: tool.py
+author: builtin
+trusted: true
+created: "2026-02-27"

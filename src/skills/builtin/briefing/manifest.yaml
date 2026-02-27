@@ -1,0 +1,9 @@
+name: briefing
+description: "Generate daily news and topic briefings"
+trigger: "When the user asks for a briefing, news summary, or daily digest"
+permissions:
+  - http_request
+entry_point: tool.py
+author: builtin
+trusted: true
+created: "2026-02-27"
