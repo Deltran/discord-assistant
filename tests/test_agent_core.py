@@ -51,3 +51,22 @@ async def test_agent_separate_sessions(agent, mock_llm):
     bob_messages = mock_llm.ainvoke.call_args_list[1][0][0]
     message_contents = " ".join(m.content for m in bob_messages)
     assert "Alice" not in message_contents
+
+
+@pytest.mark.asyncio
+async def test_agent_compacts_long_sessions():
+    mock_llm = MagicMock()
+    mock_llm.ainvoke = AsyncMock(return_value=MagicMock(content="Response"))
+
+    agent = CoreAgent(
+        llm=mock_llm,
+        system_prompt="System",
+        max_session_messages=10,
+    )
+
+    for i in range(12):
+        await agent.invoke(session_id="dm-1", user_message=f"Msg {i}", user_name="Alice")
+
+    session = agent._get_session("dm-1")
+    # 12 human + 12 AI = 24 without compaction, should be compacted
+    assert len(session) < 24

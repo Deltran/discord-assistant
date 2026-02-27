@@ -7,13 +7,15 @@ with sub-agent routing and durable checkpointing.
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 
+from src.memory.compaction import compact_messages, should_compact
 from src.providers.minimax import normalize_messages
 
 
 class CoreAgent:
-    def __init__(self, *, llm: ChatOpenAI, system_prompt: str):
+    def __init__(self, *, llm: ChatOpenAI, system_prompt: str, max_session_messages: int = 50):
         self.llm = llm
         self.system_prompt = system_prompt
+        self.max_session_messages = max_session_messages
         self._sessions: dict[str, list[BaseMessage]] = {}
 
     def _get_session(self, session_id: str) -> list[BaseMessage]:
@@ -34,5 +36,10 @@ class CoreAgent:
 
         ai_msg = AIMessage(content=response.content)
         session.append(ai_msg)
+
+        if should_compact(session, max_messages=self.max_session_messages):
+            compacted = await compact_messages(session, llm=self.llm)
+            session.clear()
+            session.extend(compacted)
 
         return response.content
