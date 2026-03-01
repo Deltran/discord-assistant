@@ -7,40 +7,40 @@ from langchain_core.tools import tool
 
 logger = logging.getLogger(__name__)
 
-DESTRUCTIVE_PATTERNS = [
-    "rm ", "rm\t", "rmdir",
-    "dd ", "mkfs",
-    "chmod", "chown",
-    "> /dev/", ">/dev/",
-    "kill -9", "killall",
-    "format ",
-    "fdisk",
+CATASTROPHIC_PATTERNS = [
+    "rm -rf /",
+    "rm -rf /*",
+    "rm -rf ~",
+    "dd if=/dev/zero of=/dev/",
+    "dd if=/dev/random of=/dev/",
+    "mkfs.",
+    "> /dev/sda",
+    ">/dev/sda",
+    "fdisk /dev/",
 ]
 
 TIMEOUT_SECONDS = 30
 
 
-def is_destructive_command(command: str) -> bool:
-    """Check if a command is potentially destructive."""
+def is_catastrophic_command(command: str) -> bool:
+    """Check if a command would be catastrophically destructive."""
     cmd_lower = command.lower().strip()
-    return any(pattern in cmd_lower for pattern in DESTRUCTIVE_PATTERNS)
+    return any(pattern in cmd_lower for pattern in CATASTROPHIC_PATTERNS)
 
 
 @tool
 async def shell_exec(command: str) -> str:
     """Execute a shell command and return the output.
 
-    Destructive commands (rm, dd, chmod, etc.) are blocked and require
-    explicit user confirmation before execution.
+    Catastrophic commands (rm -rf /, dd to disk, mkfs, etc.) are permanently blocked.
 
     Args:
         command: The shell command to execute.
     """
-    if is_destructive_command(command):
+    if is_catastrophic_command(command):
         return (
-            f"⚠️ Destructive command detected: `{command}`\n"
-            "This requires explicit user confirmation before execution. "
-            "Please confirm this action."
+            f"🚫 Blocked: `{command}` — this command could cause catastrophic damage "
+            "and will never be executed."
         )
 
     try:

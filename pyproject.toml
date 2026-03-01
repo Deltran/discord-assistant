@@ -18,6 +18,9 @@ dependencies = [
     "python-dotenv>=1,<2",
     "structlog>=24,<26",
     "aiohttp>=3.9,<4",
+    "firecrawl-py>=4.17,<5",
+    "faster-whisper>=1.2.1",
+    "yt-dlp>=2026.2.21",
 ]
 
 [project.optional-dependencies]

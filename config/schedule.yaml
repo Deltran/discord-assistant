@@ -3,4 +3,4 @@ briefing:
   timezone: "America/Chicago"
 compaction_check_hours: 6
 memory_review_day: "monday"
-heartbeat_minutes: 5
+heartbeat_minutes: 30

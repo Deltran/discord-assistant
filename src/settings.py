@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     minimax_api_key: SecretStr
     minimax_base_url: str = "https://api.minimax.io/v1"
     minimax_model: str = "MiniMax-M2.5"
+    firecrawl_api_key: SecretStr | None = None
     monitoring_channel_id: int = 0
     assistant_home: Path = Path.home() / ".assistant"
 

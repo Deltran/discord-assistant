@@ -7,6 +7,7 @@ from typing import Callable, Awaitable
 import discord
 import yaml
 
+from src.agent.core import LLMProviderError
 from src.bot.filters import MessageAction, evaluate_message
 from src.bot.formatters import split_message
 from src.memory.store import MessageStore
@@ -79,7 +80,27 @@ class AssistantBot(discord.Client):
             await message.channel.send("I received your message. Agent not yet connected.")
             return
 
-        response = await self._agent_callback(message)
+        try:
+            async with message.channel.typing():
+                response = await self._agent_callback(message)
+        except LLMProviderError as e:
+            logger.error("LLM provider error: %s (recoverable=%s)", e, e.recoverable)
+            if e.recoverable:
+                await message.channel.send(
+                    f"Sorry, I'm having trouble thinking right now — {e}. Try again shortly."
+                )
+            else:
+                await message.channel.send(
+                    f"I've hit a problem I can't recover from — {e}. My operator will need to look into this."
+                )
+            return
+        except Exception:
+            logger.exception("Unexpected error handling message")
+            await message.channel.send(
+                "Something went wrong on my end. Please try again later."
+            )
+            return
+
         if response:
             for chunk in split_message(response):
                 await message.channel.send(chunk)

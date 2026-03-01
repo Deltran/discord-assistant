@@ -1,6 +1,11 @@
 """Skill registry for routing — builds condensed index for system prompt."""
 
-from src.skills.loader import SkillManifest
+import logging
+from pathlib import Path
+
+from src.skills.loader import SkillManifest, load_manifests
+
+logger = logging.getLogger(__name__)
 
 
 class SkillRegistry:
@@ -25,3 +30,16 @@ class SkillRegistry:
 
     def all_skills(self) -> list[SkillManifest]:
         return list(self._skills.values())
+
+    def reload(self, *dirs: Path) -> int:
+        """Re-scan directories and reload all skill manifests.
+
+        Returns the number of skills loaded.
+        """
+        self._skills.clear()
+        for d in dirs:
+            if d and d.exists():
+                for manifest in load_manifests(d):
+                    self.register(manifest)
+                    logger.info("Loaded skill: %s", manifest.name)
+        return len(self._skills)

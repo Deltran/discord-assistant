@@ -1,0 +1,503 @@
+ If you're prompting like it's last month, you're already too late and I'm not just doing that for
+ clickbait. If you haven't updated how you think about prompting since January 2026,
+ you're already behind. Opus 4.6 Gemini 3.1 Pro in GPT 5.3 Codex have all shipped in the past few weeks
+ with autonomous agent capabilities that make the chat based prompting most people are practicing
+ functionally obsolete for serious work. These models don't just answer better. They work,
+ autonomously for a long time for hours for days, I get specs without really checking in.
+ That changes what good at prompting means on a fundamental level and it's time to revisit
+ how we think about prompting as a result. Not because prompting stopped
+ mattering. It actually matters more than ever, but because the word prompting is now hiding
+ for completely different skill sets and most people are only practicing one of them. The gap between
+ the people who see all four of them and the people who don't is already 10x and widening. In this
+ piece, I'm going to lay out what those four skills are, why the distinction matters now and exactly
+ how to build the skills you're missing. This builds on my earlier work on intent engineering, but it
+ goes way beyond it to lay out a full framework for how to think about prompting post February 26.
+ Intent engineering is just one layer in a larger stack. This is the full stack for prompting
+ post February post these new autonomous models. First, what changed? The prompting skill that
+ mattered since 2024 has been really conversational. You sit in the chat window, you type a request,
+ you read the output, you iterate, you get better phrasing things, you provide examples, you structure
+ instructions. If you're good at that and if you've been following this video series you probably
+ are, you've been building real skills. They work, you're faster than you were a year ago. But that
+ fundamental chat base skill has a ceiling and in early 2026 a lot of people are hitting it because the
+ models have stopped really being chat partners and started being workers, workers that run for a long
+ time. I'm not kidding when I say days and sometimes weeks and the thing about a worker that runs for a
+ long time is that everything you relied on in a conversation, like your ability to catch mistakes
+ in real time, your ability to provide missing context accurately with the model asks, your ability to
+ course correct with things drift, all of that must be encoded before the agent starts, not during the
+ course of a conversation, but at the top. This is a fundamentally different skill. It's not a harder
+ version of the same skill. It's actually different. I've talked before about the importance of
+ thinking about prompting even in the chat window as providing the relevant context for the LOM to
+ provide you an accurate response. But this goes way beyond that. If you were giving an agent a long
+ running task, which is where most of AI is going, even if you're not a coder, then you have to think
+ not about how do I build for a chat response. But how do I build for economically real work that this
+ agent will do and provide the agent the relevant context for that? And this shift is happening really
+ quickly between October of 2025 and January of 26. In just three months, the longest autonomous
+ cloud code sessions nearly doubled and they've doubled again since that. Agents are running into the
+ hundreds and thousands in production systems at major companies. And this is just from publicly
+ available information. We have tell us reporting that they have 13,000 custom AI solutions internally.
+ We have Zapier reporting that they have over 800 agents internally. Look, whenever they release
+ a press release, you gotta assume that company feels behind and is releasing something to help them
+ feel better about themselves. The companies that are really serious about AI don't feel the need for press
+ releases and have an order of magnitude or more agents. So this is not about a world that is
+ coming. This is about a world that has landed. But this still might not feel concrete enough for you.
+ So let me talk to you about a random Tuesday. Two people sit down with the same model, same
+ subscription, same context window. One of them uses 2025 skills. You type a request, you get back something
+ that is 80% right. You spend 40 minutes cleaning it up and you have a good use of AI because you
+ saved a lot of time. It might have saved 50% on your time. It might have saved 60% maybe higher.
+ Let's make the gap concrete. Let's say two people are sitting down with the same model on a Tuesday
+ morning and February of 2026. Same subscription, same context window. The only difference is that one of
+ them is using 2025 prompting skills. And one of them is using 2026 prompting skills. So the 2025
+ person types a request. And they're asking for a PowerPoint deck. Right. They get back something
+ this about 80% correct. Maybe there's some formatting issues. Maybe the font has some collisions in it.
+ Maybe there's some styling issues. They spend about 40 minutes cleaning it up. But they're pretty happy
+ because this deck would have taken two or three hours. That's a 2025 prompting skill application.
+ It would have been good in 2025. Person B sits down with 2026 prompting skills. They write a
+ structure specification in 11 minutes. They take longer to prompt. Then they hand it off to the same
+ chat, but they're thinking of it and using it as an autonomous agent. They go to make coffee.
+ They come back to a completed PowerPoint that hits every quality bar to find up front. And they're
+ able to do this for five other decks before lunch. In other words, they are now doing a week's worth
+ of work in a morning. Easily. Same model, same Tuesday, 10x gap. And if you want to replicate this,
+ you can replicate this experiment directly in cloud of this 4.6 in the cowork model, which is
+ available on Windows and Mac. And you can see exactly how this plays out. And this did not happen
+ because the person with 2026 prompting skills is smarter or because she's more technical. It's because
+ she's practicing a different skill than person one. And person one doesn't know that kind of prompting
+ skill exists. I think it's worth paying attention to Shopify CEO Toby Lickay here. Unlike most CEOs,
+ Toby is a technical guy. And he does not just dig into AI from a LinkedIn perspective. He has
+ a folder of prompts that he runs against every new model release. And he really deeply thinks
+ about how new model releases changes workflow. He uses the term context engineering because he believes
+ the fundamental skill that we're all facing is the ability to state a problem with enough context
+ in a way that without any additional piece of information, the task becomes plausibly solvable.
+ I think that's a really elegant way to describe what person be dead in the exact
+ legislature showed you. Person be put all of the information that the model needed to build a deck
+ in one task very clearly defined and the model could just go to work. This isn't about clever
+ prompt tricks. This isn't about magical words that an AI can use to produce a better output.
+ It's about a communication discipline. Can you state a problem so completely with so much
+ relevant surrounding information that a capable system can solve it without going out and touching
+ more context? Can you make your request as self-contained as possible? This is a really big deal
+ because it demands a much higher bar for communication from us humans than we're used to. And that's
+ something that Toby called out when he reflected on the impact of AI on his own leadership style.
+ One of the things he mentioned is that by being forced to provide AI with complete context,
+ he is now better at communicating as a CEO. His emails are tighter. His memos are better. His decision
+ making frameworks are stronger. And Toby has gone farther than most people thinking about the
+ implications of context engineering. I think one of his most provocative assessments is that a lot of what
+ people in big companies call politics is actually bad context engineering for humans. What he suggests
+ is that essentially good context engineering would surface disagreements about assumptions that
+ there are never surface explicit labor play out as politics and grudges in large companies.
+ And he says that happens because humans tend to be sloppy communicators who rely on shared
+ context that doesn't actually exist. I think that's a really interesting thesis. I think one of the
+ implications of getting this February 2026 prompting less and deeply ingrained in ourselves is that
+ our communication human to human is likely to improve and our organizations are likely to have
+ cleaner decisioning and cleaner communication even between humans as a result. So I bet you're wondering
+ what are these four disciplines? What does it mean when prompting becomes multiple skills that we
+ need to work? Well, I don't want to hide the ball here. Here is the framework that I would lie out that
+ describes what prompting should be in February 2026. And I've built it to be future proof. So we look at
+ the direction that agents are going, how they're developing this year. These four disciplines
+ are going to matter even as we expect agents to continue to scale. This represents a significant
+ update on how I've taught prompting before 2026 because the way we prompt in before 2026 was helpful
+ as a foundation. You're not losing something by having learned it, but it's not enough as agents
+ get more capable and I think we're due for a reset. So fundamentally, prompting is the broad skill of
+ providing input to AI systems so that they can do useful work. Prompting has diverged into four
+ distinct disciplines, but it's not taught that way. And so I'm laying this out for the first time here.
+ Each of these disciplines is operating at a different altitude in time horizon and you need to
+ understand them all to prompt well. Just because they're not often prompted this way, just because they're
+ not often taught this way, doesn't mean that good prompters don't intuitively know this. What I'm
+ taking is intuitive knowledge that I see at excellent prompters and boiling it down into four key
+ disciplines that you can practice and learn from and these build on each other. If you skip one,
+ I'm presenting them in order. If you skip one, you're creating the kind of failures we tend to see
+ at scale and the enterprise, but you're creating it for yourself in your own prompting. And I'll kind of
+ get at what that means and you get the idea. So discipline one is prompt craft. This is the original skill.
+ This is the skill I have taught in many others have taught for the last year too. It's synchronous,
+ it's session based, and it's an individual skill. You, you sit in front of a chat window,
+ you write an instruction, you evaluate the output, then you iterate. The skill here is knowing how to
+ structure a query. And I've talked a lot about this in the past. I'll rehash it briefly here. You must
+ have clear instructions. You must include relevant examples and counter-examples. You need to include
+ appropriate guardrails. You need to include an explicit output format. And you should be very
+ clear about how you resolve ambiguity and conflicts. So the model doesn't have to make it up on the slide.
+ This is what Anthropics, Prompt Engineering Documentation covers. Open AI talks about this. Google talks
+ about this. It's on a thousand blog posts and LinkedIn courses. Prompt craft has not become irrelevant.
+ Don't hear that. It's just become table stakes. It's sort of the way knowing how to type with
+ 10 fingers was once a professional differentiator. And now it's just table stakes. It's just as
+ soon. If you can't write a clear well structured prompt in 2026, you're the person in 1998 who couldn't
+ send an email. Is it important to be able to do it? Yes. Is it going to differentiate you in the
+ workforce? No, not really. The key shift is that Prompt craft was the whole game when AI interactions
+ were synchronous and session based. You wrote something, you got something back, and you refined it
+ in real time. As a human interacting with that model, you were acting as the intent layer,
+ as the context layer, and as the quality layer so that long running tasks could get done,
+ you did all the breaking out of those tasks. That model of Prompting broke the moment
+ agent started running for hours without checking it. Discipline too. We've been talking about for a
+ few months now. It's called context engineering. Anthropics published the foundational piece on this
+ back at September of 2025. There's a lot of other good pieces out there as well. I've written
+ a fair bit on it. I define context engineering as the set of strategies for curating and maintaining
+ the optimal set of tokens during an LLM task. And that's not just me defining that. That's a pretty
+ commonly held definition. Langshan's Harrison Chase was even blunter about what context engineering is
+ during a recent Sequoia capital interview. When he said everything is context engineering,
+ it actually describes everything we've done at Langshan without knowing the term existed. So that's
+ actually somewhat dangerous because context engineering is only on of four levels and people have
+ misunderstood it to mean everything. And one of the things I'm trying to get us to move toward
+ is a world where we understand context engineering has a specific skill where we're providing relevant
+ tokens to the LLM for inference. And yes, it is certainly foundational. It is certainly significant.
+ It is where the industry's attention is focused today. It is the shift from crafting a single instruction
+ to curating the entire information environment and agent operates with it. All of the system prompts,
+ all of the tool definitions, all of the retrieved documents, all of the message history,
+ all of the memory systems, the MCP connections. The prompt you write might be 200 tokens. The context
+ window at Langshan might be a million. Your 200 tokens are 0.02% of what the model sees. The other 99.98%
+ that's context engineering. This is the discipline that produces claw.md files,
+ agent specifications, rag pipeline design, memory architectures. It's the discipline that determines
+ whether a coding agent understands your projects, conventions, whether a research agent has access
+ to the right documents, whether a customer service agent can retrieve relevant account history,
+ and throw up an engineering team identified the core challenge precisely. LLM's degrade as you give them
+ that's correct. They do. And the point therefore is to include relevant tokens because the
+ issue is not that they can't hold the tokens. It's that retrieval quality does drop as context grows.
+ The practical implication is that people who are 10x more effective with AI than their peers are not
+ writing 10x better prompts. They're building 10x better context infrastructure. Their agents start
+ each session with the right project files, the right conventions, the right constraints already
+ loaded. The prompt itself can be relatively simple because the context does the heavy lifting.
+ I have seen this for myself as I've built out my own context engineering scaffolding. And if you're
+ wondering how to do it for yourself, I've put in a guide together with this video over on the
+ sub stack and I think it'll be helpful. Discipline number 3. This one we don't talk a lot about. I think
+ it's where we're going. As these agents start to do much longer autonomous running tasks. I wrote
+ about this one that links in a prior piece. I did a video on it. I'm going to be brief here. I'm going
+ to contextualize where it sets in the stack. Context engineering tells agents what to know. Intent
+ engineering tells agents what to want. It's the practice of encoding organizational purpose. Your
+ goals, your values, your trade-off hierarchies, your decision boundaries into infrastructure that agents
+ can act against. Clone the story is the proof case I talked about. Their AI agent resolved 2.3 million
+ customer conversations in the first month, but it optimized for the wrong thing. It's slashed resolution
+ times, but it didn't optimize for customer satisfaction. In as a result, Clone I got into big trouble
+ and had to rehire a bunch of human agents and is still dealing with the customer trust aftermath.
+ So intent engineering sets above context engineering, the way strategy sets above tactics. You can
+ have perfect context and terrible intent alignment. You cannot have good intent alignment without
+ good context, though, because the agent needs information to act on the intent. So these disciplines,
+ again, they're cumulative. Another thing I want you to notice is that failure as we progress up this hierarchy
+ is getting more and more serious. When you as an individual sit down and you screw up a prompt,
+ it might waste your morning at worst. When you as a human being sit down and screw up context
+ engineering or intent engineering, you are screwing up for the entire team, your entire or your entire
+ company, the stakes get higher. And because the stakes get higher, our attention to detail matters and
+ the value of the work we do increases tremendously. What I am talking about when I talk about context
+ engineering and intent engineering can be a full-time role in a big company, and if it's not,
+ it is a high-stakes human skill that has a lot of transferable value. Level 4 is specification
+ engineering. We're just starting to talk about this now, even though the best practitioners are already
+ doing it. Specification engineering is the practice of writing documents across your organization
+ that autonomous agents can execute against over-extended time horizons without human intervention.
+ This is a level above everything I've described, because all of the first three levels focused on
+ how you prepare work directly for an agent. Specification engineering is really about thinking
+ about your entire informational corpus in your organization as agent-fungible, agent readable. Everything
+ you write has to be something the agent can access and do something with. It's not really about prompting
+ per se, it's not about an individual agent's context window, it's not even about the intent you've given agents.
+ Specifications are complete, they're structured, they're internally consistent,
+ descriptions of what an output should be for given tasks. They look at how quality is measured. Specifications
+ are a mindset you bring to your documents that allow you to apply agents across large swaths
+ of your current company's context with the confidence that what the agent reads is going to be relevant.
+ I think an interesting example from Enthrop that actually comes from the team's struggles with
+ the Opus 4.5 agent, which is one generation ago now. They were trying to build a production quality
+ web app, but if you give the agent only a high-level prompt like build a clone of cloud.au, the
+ agent tries to do too much at once runs out of context mid-implementation and leaves the next session
+ guessing at what happened. The fix it turned out was not a better model, it was specification engineering.
+ It was a pattern that you could specify where an initial laser agent sets up the environment,
+ a progress log documents what's been done and a coding agent then makes incremental progress against
+ a structured plan every session. The specification became the scaffolding that let multiple agents
+ produce coherent output over days. So the shift from prompt to specification mirrors a transition that
+ happened in human engineering decades ago. When you're building something small, verbal instructions
+ and conversations work really well, when you're building something large enough to require a
+ team or span multiple sessions, you need blue prints. And throughout the updated blue prints in the
+ Opus 4.5 example, and even though we've now moved to Opus 4.6, the need for specification engineering
+ has not gotten down, it's got up because Opus 4.6 can do even more work. That's true for Codex 5.3,
+ it's true for Gemini 3.1 Pro as well. The smarter models get the better unique to get its specification
+ engineering, which is why I deliberately started this section zooming out and saying,
+ the entire org's document corpus should be viewed as a form of specification engineering.
+ And yes, this is a fractal insight. You can also think about specification engineering for your
+ individual agent task. What you think about what is the log that the agent has? How do we assign tasks
+ across this agent build? How do we make sure the agent has a clearly specified requirements list to work
+ from? But all of that gets way way easier to put together if you think of your entire
+ organizational document corpus as specifications that are agent readable. Your corporate strategy is
+ a specification. Your product strategy is a specification. Your OKRs are a specification. Everything
+ ends up being a specification that your agent can use. And that's too far from context engineering
+ because the art of context engineering is really about shaping the context window in a way that's
+ relevant for the agent. Right. If you look at these four levels, the prompt is you and the agent
+ and you're working on crafting clear instructions. The context window is how do you shape relevant
+ tokens? Intent engineering is how do you communicate goals and objectives to the agent
+ that allow the agent to work autonomously for long periods of time in a direction consistent with
+ company strategy? Specification engineering is how do you think about your entire
+ corporate document structure? The knowledge, the context that makes the corporation work
+ as a form of specification. And yes, for individual agent runs, how do you refine that
+ specification? That becomes something where you give the agent a good specification. It is going to
+ start to keep the context window cleaner than before. And so these start to interplay. Right. If you
+ write good spec, if you have a good task log, if the agent understands what the spec is from
+ the broader organizational context, they're less likely to go off the rails because of intent
+ engineering conflicts. They're less likely to blow it out with bad context. And so all of these
+ start to interplay. But the highest level is to think about specification as the way your organization
+ does business. You specify the outputs you want. The agent does the work. The outputs are produced.
+ That is the highest level description of what business is going to look like in the next couple of years.
+ And it starts with understanding how to specify. This is where Anthropics Best Practices
+ Documentation for Claude Code becomes really revealing. The recommended workflow for complex
+ features is relatively simple. Interview me in detail. Ask about a technical implementation,
+ UI UX, edge cases, concerns and tradeoffs. Don't ask obvious questions. Dig into the hard parts.
+ The agent then writes the spec with the human. I think that that is an artifact of this moment in time.
+ And I think we will get to a point where the agent will only be asking us for places where the broader
+ specification corpus is in conflict or ambiguous. And we have to talk about what it means to us for this
+ task to be accomplished well. Because the entire organizational infrastructure is going to be
+ agent. So the practical skill going forward is not writing code. It's not crafting prompts. It's
+ the ability to describe an outcome with enough precision and completeness that an autonomous system
+ can execute against it for days or weeks. I hope you're seeing here how that is a fundamentally
+ different skill from writing a good prompt in a chat window. And the people who are excellent at
+ one of these layers are not automatically excellent at all of them. Context engineers
+ spend a lot of time thinking about how to compress tokens and get good tokens in the context windows
+ and how to keep bad tokens out. That is a different mindset than thinking about your information
+ environment as agent translatable, agent readable, agent fundable. We have to have all of these skills
+ in order to effectively bring AI into the enterprise or even into a small business in 2022. And I will
+ tell you one person businesses have the greatest advantage right now. Because if you are a one person
+ business and you can just convert your notion to be agent readable, you're off to the races today.
+ There's no gigantic effort required to make all of your SharePoint agent readable. It's simple. It's easy.
+ You just get it into notion and you're done. This comes back to the core idea that in 2026, speed is going to
+ matter because agents are going to keep getting better quickly. What we have now as days and weeks
+ is going to become weeks and months by the end of the year. And the corresponding impact of getting
+ specification engineering correct is going to be even higher. The corresponding impact of getting
+ all four levels translated into specific roles, people who are responsible, DRIs, teams who handle this,
+ that's going to be even more valuable in 2026. And so what I mean by that is this viewer at a large
+ company, you should have people who are doing context engineering and that's all they're doing. You should
+ have people who are doing specification engineering and thinking about how agents can read the enterprise.
+ You should have people who are thinking about intent engineering and how you translate goals into a set of
+ objectives that an agent can read and value and a set of verifiable guardrails the agent can follow.
+ Look, the mental model most people carry is that prompting is good instructions for the AI and that
+ fails for a very specific reason. And I hope you're seeing it here. That entire model assumes synchronous
+ interaction. In the synchronous AI human partnership model, you're always there at the computer. You see
+ the output in real time, you correct mistakes right away, you provide additional context when the
+ model asks or when you notice it going off track. Long running agents break every single assumption in
+ that model. So if you've relied on the assumptions of synchronous prompting, you have a structural
+ vulnerability in the way you think about AI. You need to start thinking about AI as if your real time
+ oversight is embedded in the specification before the agent begins to work. The planner worker
+ architecture that's dominating production agent deployments really reflects this reality. A capable model
+ plans the work decomposes it into sub tasks defines the acceptance criteria and assigns work out to models.
+ And then cheaper faster models do the work. The planning phase, you could call it the
+ specification phase determines the quality ceiling. The planning phase basically taking your specification
+ and expanding it and enriching it and breaking it out and planning against it, that's what determines
+ the quality of the work of the overall system execution without that specification step produces broken work.
+ And it requires extensive human rework to be a value at all. So the shift from fixing it in real
+ time, which is what we do with a lot of prompting in the chat window, to we must get the spec right up front,
+ changes your bottlenecks skill. Real-time prompting rewards verbal fluency, it rewards quick iteration,
+ it rewards a good eye for output quality. Specification engineering rewards completeness of thinking,
+ anticipation of edge cases, clear articulation of acceptance criteria and the ability to decompose
+ really complicated outcomes into independently executable components. Different people are good at these
+ things in different ways. Some people are going to be naturally exceptional at synchronous prompting
+ and they're going to struggle with specification work. And some people will be mediocre at chat-based interaction
+ but they might actually be excellent spec engineers. My challenge to you is that you don't tolerate
+ whatever your natural propensity is as you're ceiling. Think of this as a learnable skill and go after it.
+ Now you might ask, if we're going after it, what are the foundational elements to learn?
+ Specification is ironically very vaguely, please tell me what you mean. I want to suggest to you that in
+ 2026 we can define the primitives that go into good specifications in ways that are useful for us to learn.
+ And I'm going to go ahead and define them right here. I think these are the foundation that we need to learn
+ if we want to get better at specifying and we want to get better at the prompting skills that will matter
+ in 2026 and beyond. Primitive number one, self-contained problem statements. This is actually
+ Toby's insight but it's not only his insight. It's been primitive number one as self-contained problem
+ statements. Think back to what Toby said when he talked about the idea that we have to give the model
+ everything it needs to do to work. Can you state a problem with enough context that the task is plausibly
+ solvable without the agent going out and getting more information? The discipline of self-containment
+ forces you to be clear. Its surfaces hidden assumptions, it makes you articulate constraints you
+ normally leave implicit because you trust the human on the other end to fill in the gaps. AI doesn't
+ fill in gaps reliably. It fills the most statistical plausibility and that's a polite way of saying it
+ guesses in ways that are often subtly wrong. So if you're trying to train this primitive, I would say
+ take a request you would normally make conversation like update the dashboard to show the Q3 numbers
+ and rewrite that. As if the person receiving it has never seen your dashboard,
+ doesn't know what Q3 means in your org context. Doesn't know what database to query and has no
+ access to any information other than what you include. That is the level of self-containment you should
+ be challenging yourself with if you want to get better at this primitive. Primitive two,
+ learn about acceptance criteria. If you can't describe what done looks like an agent can't
+ know when to stop or more precisely it will stop at whatever point its internal heuristic say the task
+ is complete, which may bear no relationship to what you need it. This is why the 80% problem is a big
+ issue for agent system design. The specification, let's say the specification said build a login page
+ when it should have said build a login page that handles email, password, social, OAuth, the Google
+ and GitHub progressive disclosure of 2FA, session persistence for 30 days and rate limiting
+ after five failed attempts. If you're training on this primitive you want to get to the ladder not
+ the former. For every task you delegate right three sentences an independent observer could use to
+ verify the output without asking you any questions whatsoever. If you can't write those sentences down
+ you probably do not understand the task well enough to give it to an agent. I have had that happen
+ where I've been in a conversation with an AI agent and I realize I don't know enough to delegate
+ the task and I have to come back later. That's okay. It's good to realize that before you assign the
+ primitive three is constraint architecture. Learn constraint architecture. What the agent has to do,
+ what the agent cannot do, what the agent should prefer when multiple valid approaches exist.
+ What the agent should escalate rather than decide autonomously. These four categories, the musts,
+ the must nots, the preferences and the escalation triggers form the constraint architecture that turns
+ a loose specification into a very reliable one. The Claude.MD pattern that's emerging in the
+ coding community is a practical implementation of constraint architecture. The best Claude.MD files
+ are not long lists of rules. They're concise. They're extremely high signal constraint documents. Use
+ these build commands. Follow these code conventions. Run these tests before marking a task complete.
+ Never modify these files without explicit instructions. The community consensus is very strongly
+ that every line in a dot file needs to earn its place. If you ask would removing this line
+ cause the AI to make mistakes and the answer is now it really wouldn't then kill the line. So if you
+ want to train this primitive before delegating a task, you should be writing down what a smart, well-intentioned
+ person might do that would technically satisfy the request but produce the wrong outcome. Those failure
+ modes end up being your constraint architecture. Encode them. Primitive 4 is decomposition.
+ Large tasks need to be broken into components that can be executed independently, tested independently,
+ and integrated predictably. This is software engineering's oldest lesson, modularity but is being
+ applied to AI task delegation. And through optics long running agent harness splits every complex project
+ into an environment setup phase, a progress documentation phase, and an incremental coding session.
+ Each independently verifiable. You get similar task decomposition automatically inside codex.
+ A marketing content audit requires the same decomposition as a coding task so I'm not just talking to
+ engineers here. You would have to decompose your marketing content into quality scoring,
+ gap analysis, recommendation generation, et cetera. If you want to train on the primitive of task
+ decomposition, take any project that you would estimate at a few days of work and decompose it into
+ sub-tasks that each take less than two hours for you to do. Have clear input output boundaries
+ and can be verified independently of the other tasks. That is the granularity at which agents work
+ best and it's the granularity at which specification engineering tends to operate. Now in 2026,
+ you do not have to pre-specify all of those two-hour tasks when you are writing a prompt. But you do
+ have to understand what all of those tasks are and you have to understand how to describe for a
+ planner agent. What done looks like and what decomposable pieces look like in such a way that the planner
+ agent can reliably break the work into those 50 or 60 sub-tasks. In other words, your job increasingly
+ is not to manually write the sub-tasks for the agent. Your job is to provide the break patterns
+ that a planner agent can use to break up larger work in a reliable executable fashion. That's a level of
+ abstraction, even above decomposition and that is a lot of where we're going as agents start to run.
+ Primitive five is evalor evaluation design. This is critical to do not just in an individual level,
+ but at an org level. Organizations need to think about every level of AI deployment in terms of
+ e-vowels. How do you know the output is good? Not does it look reasonable, which is how most people evaluate
+ AI output, but can you prove, measureably, consistently, that this is good. If prompt craft is the art
+ of the input, evaluation design is the art of knowing whether that input worked. And in a world where
+ agents can run for a really long time, evalor design is the only thing standing between
+ AI generated output that I can't use and AI generated output, we can really use as is. If you want to
+ train this primitive for every recurring AI task in your world, build an eval. Build three to five
+ test cases with known good outputs and run them periodically, especially after model updates. This is
+ going to catch a regression. It will build your intuition for where models fail. It will create institutional
+ knowledge about what good looks like for your specific use cases. Your team, you, your org,
+ you need to be doing this systematically. If you're listening to all this and you're wondering where to start,
+ I gave you those four layers for a reason in order. Start by closing the prompt craft gap.
+ Most people are worse at basic compting than they think. You should be rereading compting documentation.
+ I've written a bunch on the subject. I'm writing more for this piece. You should do interactive tutorials,
+ you can head over to AI cred and see where you are on prompting. You should be building a folder of
+ tasks that you do regularly writing your best prompt against each one and saving the outputs as your
+ baseline and then revisiting them over time. Take prompt craft seriously. Second, once you feel like you
+ start to have a handle on that, start to build your personal context layer. You should be writing a
+ cloud.marked on equivalent for your work. I don't care if you use cloud. You still need to have
+ an idea of your goals, your constraints, your communication preferences, your quality standards,
+ the institutional context that a new team member would need six months to absorb, written down.
+ Start AI sessions by loading this context. The difference in output quality should be immediate and obvious.
+ Then get into specification engineering. Take a real project, not a toy problem, and write a
+ specification for it. Then start to get into intent infrastructure. This is an organizational layer.
+ So if you manage people or systems, you can start encoding the decision frameworks your team uses implicitly.
+ If you were an individual contributor, you should be encoding the decision frameworks you understand
+ and trying to be a champion that pushes for this at the organizational level. A lot of teams like to
+ talk about adopting AI. We'll talk about it in terms of building intended for structure. Talk about
+ with good enough looks like for each category of work together. Talk about what gets escalated
+ by AI versus what AI can decide. Write it down. Structure it. Make it available to agents.
+ And then practice specification engineering. Take a real project, not a toy problem. Write a
+ spec for it before touching AI. Talk about acceptance criteria, constraint architecture,
+ decomposition, etc. Hand that spec to an agency what comes back. And oh yes, from an
+ org perspective, start to think about every doc you touch as a spec that the agent will need to
+ read and operate against. Your org is a system of business processes even if you're a team of one.
+ And those business processes should be agent readable and they should be speckable. This has some of
+ the downstream implications that Toby talked about where he said a lot of organizational politics is just
+ bad context engineering at the org level. If we practice better specification engineering for
+ our documents, we will expose a lot of the implicit assumptions that we end up being political about
+ inside orgs and we will start to make those agent readable and they will start to become fungible and
+ we will start to have fewer issues. Practicing specification engineering is a way for us to
+ clearly describe intent at organizational scale, and clearly translate that intent in a way that agents
+ can read it. And yes, it nests down to individual agent runs and it ladders up to the full organizational
+ context. And that's why it's the last and most difficult skill to learn. The progression here from
+ prompt craft all the way up to spec engineering is not a ladder where you can abandon lower runs.
+ It's a stack where each layer makes the layers above it possible. You cannot write good spec if you can't
+ write good prompts. You can't build effective agent systems if you don't understand context engineering.
+ You can't align agent behavior with organizational goals without understanding how intent works
+ and how that plays into context engineering. They all go together. There's a final dimension to
+ this that goes beyond AI and I want to spend some time on it. I hinted at it when I talked about the
+ idea that Toby found that he communicated better when he got better at prompting. The best human
+ managers that I've worked with already operate with that degree of clarity. They give complete
+ context when they delegate. They specify acceptance criteria to their team members. They articulate
+ constraints. They're effectively following the four disciplines of AI input with their people.
+ And that makes for effective leadership. What's happening right now I think if we step back is that AI is
+ enforcing a communication discipline that the best leaders have always practiced intuitively. And now
+ everyone needs it in order to be effective. You cannot just rely on shared context with the machine.
+ You cannot just assume that AI will know and that is something that is a gift to us because so many
+ of our colleagues don't know what we mean either. How many times have you sat in a meeting where someone
+ is referring to a document and you don't know what that document is and you're afraid to ask. That is a
+ wonderful example of the kind of poor communication quality that goes into human meetings. This is not
+ a framing. You'll see in a lot of how to prompt courses. I think it should be. The skill of
+ providing high quality input to intelligent systems turns out to be a skill that's translatable for AI's
+ and for humans. It turns out to be a fundamental skill of the age and age that benefits us as humans
+ and how we work together. I think the people who develop these skills, this collection of skills,
+ around prompting for 2026, are going to end up being the leaders who will run organizations where
+ agents and humans both perform at their ceilings. And the people who don't, the people who are stuck
+ in 2025 prompting skills are going to wonder why their AI investments keep producing partial value
+ and meanwhile their human teams keep having alignment issues. The prompt by itself is dead. The
+ specification, the context, the organizational intent, that is where the value in prompting is moving
+ toward because agents are starting to work for longer and longer periods and look in a lot of ways
+ like junior employees. The specification done right turns out to be just what clear thinking has always
+ looked like. Really made explicit because machines don't let us be lazy about it and I'm really excited
+ for the way that kind of communication clarity can clean up our organizations and our human
+ to human communication as well. Good luck with prompting the humans and agents in your life.
+ Cheers. And yes, there's lots more on this on the subject. I think this is one that needs a really
+ complete guide so I wrote up a lot of extra stuff for this so that you can dive into what each layer of
+ learning needs. Enjoy and happy prompting.
+le
+[2029.44s -> 2036.16s]  which is how most people evaluate AI output but can you prove measurably consistently that this is good?
+[2036.16s -> 2043.84s]  If prompt craft is the art of the input, evaluation design is the art of knowing whether that input
+[2043.84s -> 2049.36s]  worked and in a world where agents can run for a really long time. Eval design is the only thing
+[2049.44s -> 2055.52s]  standing between AI generated output that I can't use and AI generated output we can really use
+[2055.52s -> 2062.48s]  as is. If you want to train this primitive for every recurring AI task in your world, build an Eval.
+[2062.48s -> 2068.24s]  Build three to five test cases with known good outputs and run them periodically especially after
+[2068.24s -> 2073.36s]  model updates. This is going to catch a regression. It'll build your intuition for where models fail.
+[2073.36s -> 2078.48s]  It will create institutional knowledge about what good looks like for your specific use cases.
+[2078.48s -> 2084.08s]  Your team, you, your org, you need to be doing this systematically. If you're listening to all this
+[2084.08s -> 2089.92s]  and you're wondering where to start, I gave you those four layers for a reason in order.
+[2090.48s -> 2096.16s]  Start by closing the prompt craft gap. Most people are worse at basic prompting than they think.
+[2096.16s -> 2100.48s]  You should be rereading prompting documentation. I've written a bunch on the substack. I'm writing
+[2100.48s -> 2107.60s]  more for this piece. You should do interactive tutorials. You can head over to AI cred and see where you are
+[2107.60s -> 2113.20s]  unprompting. You should be building a folder of tasks that you do regularly, writing your best prompt
+[2113.20s -> 2118.72s]  against each one and saving the outputs as your baseline and then revisiting them over time. Take
+[2118.72s -> 2123.84s]  prompt craft seriously. Second, once you feel like you start to have a handle on that,
+[2123.84s -> 2129.68s]  start to build your personal context layer. You should be writing a claw dot markdown equivalent
+[2129.68s -> 2136.08s]  for your work. I don't care if you use clawed. You still need to have an idea of your goals, your
+[2136.08s -> 2141.04s]  constraints, your communication preferences, your quality standards, the institutional context
+[2141.04s -> 2147.12s]  that a new team member would need six months to absorb written down. Start AI sessions by loading
+[2147.12s -> 2152.40s]  this context. The difference in output quality should be immediate and obvious. Then get into
+[2152.40s -> 2159.04s]  specification engineering. Take a real project, not a toy problem, and write a specification for it.
+[2159.04s -> 2164.32s]  Then start to get into intent infrastructure. This is an organizational layer. If you manage people
+[2164.56s -> 2169.52s]  systems, you can start encoding the decision frameworks your team uses implicitly. If you are an
+[2169.52s -> 2175.52s]  individual contributor, you should be encoding the decision frameworks you understand and trying to
+[2175.52s -> 2181.68s]  be a champion that pushes for this at the organizational level. A lot of teams like to talk about adopting
+[2181.68s -> 2186.32s]  AI. We'll talk about it in terms of building intent infrastructure. Talk about what good enough
+[2186.32s -> 2192.00s]  looks like for each category of work together. Talk about what gets escalated by AI versus what AI can
+[2192.00s -> 2198.24s]  decide, write it down, structure it, make it available to agents, and then practice specification
+[2198.24s -> 2204.48s]  engineering. Take a real project, not a toy problem, write a spec for it before touching AI. Talk
+[2204.48s -> 2210.00s]  about acceptance criteria, constraint architectures, decomposition, et cetera, hand that spec to an
+[2210.00s -> 2215.20s]  agent and see what comes back. And oh yes, from an org perspective, start to think about every
+[2215.20s -> 2222.00s]  doc you touch as a spec that the agent will need to read and operate against. Your org is a system
+[2222.00s -> 2227.12s]  of business processes, even if you're a team of one, and those business processes should be agent
+[2227.12s -> 2232.80s]  readable and they should be specable. This has some of the downstream implications that Toby talked
+[2232.80s -> 2239.04s]  about where he said a lot of organizational politics is just bad context engineering at the org level.
+[2239.04s -> 2245.12s]  If we practice better specification engineering for our documents, we will expose a lot of
+[2245.12s -> 2250.88s]  the implicit assumptions that we end up being political about inside orgs. And we will start to
+[2250.88s -> 2255.52s]  make those agent readable and they will start to become fungible and we will start to have fewer issues.
+[2255.52s -> 2261.52s]  Practicing specification engineering is a way for us to clearly describe intent at organizational
+[2261.52s -> 2267.20s]  scale and clearly translate that intent in a way that agents can read it. And yes, it nests down to
+[2267.20s -> 2272.00s]  individual agent runs and it ladders up to the full organizational context. And that's why it's the
+[2272.00s -> 2277.44s]  last and most difficult skill to learn. The progression here from prompt craft all the way up to spec
+[2277.44s -> 2283.52s]  engineering is not a ladder where you can abandon lower runs. It's a stack where each layer makes the
+[2283.52s -> 2290.88s]  layers above it possible. You cannot write good spec if you can't write good prompts. You can't build
+[2290.88s -> 2297.44s]  effective agent systems if you don't understand context engineering. You can't align agent behavior
+[2297.44s -> 2302.32s]  with organizational goals that understanding how intent works and how that plays into context
+[2302.32s -> 2307.12s]  engineering. They all go together. There's a final dimension to this that goes beyond AI and I want
+[2307.12s -> 2313.44s]  to spend some time on it. I hinted at it when I talked about the idea that Toby found that he communicated
+[2313.44s -> 2319.68s]  better when he got better at prompting. The best human managers that I worked with already operate
+[2319.68s -> 2324.88s]  with that degree of clarity. They give complete context when they delegate. They specify acceptance
+[2324.88s -> 2329.92s]  criteria to their team members. They articulate constraints. They're effectively following the four
+[2329.92s -> 2335.76s]  disciplines of AI input with their people and that makes for effective leadership. What's happening
+[2335.76s -> 2342.08s]  right now I think if we step back is that AI is enforcing a communication discipline that the best
+[2342.08s -> 2348.24s]  leaders have always practiced intuitively and now everyone needs it in order to be effective. You cannot
+[2348.32s -> 2355.44s]  just rely on shared context with the machine. You cannot just assume the AI will know and that is
+[2355.44s -> 2361.68s]  something that is a gift to us because so many of our colleagues don't know what we mean either.
+[2361.68s -> 2367.52s]  How many times have you sat in a meeting where someone is referring to a document and you don't know
+[2367.52s -> 2373.04s]  what that document is and you're afraid to ask? That is a wonderful example of the kind of poor
+[2373.04s -> 2377.92s]  communication quality that goes into human meetings. This is not a framing you'll see in a lot of
+[2377.92s -> 2383.44s]  how to prompt courses. I think it should be. The skill of providing high quality input to intelligent
+[2383.44s -> 2389.76s]  systems turns out to be a skill that's translatable for AI's and for humans. It turns out to be a
+[2389.76s -> 2395.44s]  fundamental skill of the age and age that benefits us as humans and how we work together. I think the
+[2395.44s -> 2402.64s]  people who develop these skills, this collection of skills around prompting for 2026 are going to end
+[2402.80s -> 2408.56s]  up being the leaders who will run organizations where agents and humans both perform at their
+[2408.56s -> 2414.72s]  ceilings and the people who don't, the people who are stuck in 2025 prompting skills are going to wonder
+[2414.72s -> 2420.24s]  why their AI investments keep producing partial value and meanwhile their human teams keep having
+[2420.24s -> 2428.56s]  alignment issues. The prompt by itself is dead. The specification, the context, the organizational intent,
+[2428.56s -> 2434.88s]  that is where the value in prompting is moving toward because agents are starting to work for longer
+[2434.88s -> 2441.20s]  and longer periods and look in a lot of ways like junior employees. The specification done right turns
+[2441.20s -> 2447.20s]  out to be just what clear thinking has always looked like. Really made explicit because machines don't
+[2447.20s -> 2453.36s]  let us be lazy about it and I'm really excited for the way that kind of communication clarity can clean
+[2453.36s -> 2458.24s]  up our organizations and our human to human communication as well. Good luck with prompting the humans
+[2458.24s -> 2462.88s]  and agents in your life. Cheers. And yes, there's lots more on this on the substack. I think this is
+[2462.88s -> 2467.12s]  one that needs a really complete guide so I wrote up a lot of extra stuff for this so that you can dive
+[2467.12s -> 2474.16s]  into what each layer of learning needs. Enjoy and happy prompting.
